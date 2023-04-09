@@ -3,7 +3,8 @@ import { Form, Label, Field, ErrorMessage, Button } from './ContactForm.styled';
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsSlice';
+//import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 
 const checkContact = (contacts, name) => {
   if (contacts.find(contact => name === contact.name)) {
@@ -17,7 +18,7 @@ const ContactFormSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  number: Yup.string()
+  phone: Yup.string()
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
       'Incorrect format. Enter in format XXX-XX-XX'
@@ -33,7 +34,7 @@ const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        number: '',
+        phone: '',
       }}
       validationSchema={ContactFormSchema}
       onSubmit={(values, actions) => {
@@ -56,7 +57,7 @@ const ContactForm = () => {
           Number
           <Field
             type="tel"
-            name="number"
+            name="phone"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
