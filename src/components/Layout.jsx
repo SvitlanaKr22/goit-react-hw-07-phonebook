@@ -3,7 +3,11 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   height: 100vh;
   font-size: 24px;
-  color: #010101;  
+  color: #010101;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Header = styled.h1`
